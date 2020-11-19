@@ -10,7 +10,7 @@ ex: ncom-Toyoda_com2_1200.py  will send to com2 at a buadrate of 1200
 to use: drop a file to send or run from cli and supply the file as first arg
 
 """
-script_name_to_settings_pattern = re.compile(r'\w*-(?P<machine>\w*?)_(?P<port>\w*?)_(?P<baud>\d*).py')
+script_name_to_settings_pattern = re.compile(r'(?P<machine>\w*?)_(?P<port>\w*?)_(?P<baud>\d*).py')
 
 script_name = os.path.basename(__file__)
 settings = script_name_to_settings_pattern.search(script_name).groupdict()

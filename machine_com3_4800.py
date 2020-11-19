@@ -5,7 +5,7 @@ import serial
 """
 the script name drive this show:
 
-ex: ncom-Toyoda_com2_1200.py  will send to com2 at a buadrate of 1200
+ex: Toyoda_com2_1200.py  will send to com2 at a buadrate of 1200
 
 to use: drop a file to send or run from cli and supply the file as first arg
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
                            int(settings['baud']),
                            serial.SEVENBITS,
                            serial.PARITY_EVEN, 2, None, True) as port:
-            print(f'begin transmission to {settings["name"]}, this will close if complete')
+            print(f'begin transmission to {settings["machine"]}, this will close if complete')
             try:
                 port.write(send_data)
             except:

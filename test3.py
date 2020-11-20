@@ -2,6 +2,7 @@ import sys
 import os
 import re
 import serial
+
 """
 the script name drive this show:
 
@@ -19,12 +20,11 @@ settings = script_name_to_settings_pattern.search(script_name).groupdict()
 def get_port():
     prt = serial.Serial()
     prt.port = settings['port']
-    prt.baudrate = int(settings['baud'])
+    prt.baud = int(settings['baud'])
     prt.bytesize = serial.SEVENBITS
     prt.parity = serial.PARITY_EVEN
     prt.stopbits = 2
     prt.xonxoff = True
-    prt.open()
     return prt
 
 
@@ -59,27 +59,8 @@ def save_file():
     else:
         try:
             port = get_port()
-            raw = []
-            done = False
-            while not done:
-                data = port.read()
-                if data == b'':
-                    pass
-                else:
-                    raw.append(data.decode())
-                    while not done:
-                        data = port.read()
-                        if data == b'':
-                            done = True
-                            break
-                        else:
-                            raw.append(data.decode())
-
-            builder = '%' + ''.join(raw).split('%')[1].replace('\r', '').replace(':', 'O') + '%'
-
-            with open(save_name, 'w') as file:
-                file.write(builder)
-
+            incoming = port.read_until(b'\x14')
+            print(incoming)
         except Exception as ex:
             print('error', ex)
 
@@ -87,8 +68,6 @@ def save_file():
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         save_file()
+
     else:
         send_file()
-
-
-

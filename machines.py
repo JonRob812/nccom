@@ -1,4 +1,3 @@
-import json
 
 wasino = {'name': 'Wasino',
           'port': 'COM3',
@@ -13,14 +12,7 @@ A99 = {'name': 'A99',
        'baud': 4800}
 
 
-machines = [wasino, toyoda, A99]
-print(json.dumps(wasino))
-# with open('config.json', 'w') as file:
-#     file.write(json.dumps(machines))
 
-with open('config.json',) as file:
-    machine_in = json.load(file)
-    print(machine_in)
 
 
 

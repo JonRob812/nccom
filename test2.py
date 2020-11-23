@@ -1,6 +1,6 @@
 import serial
 
-settings = {'port': 'com3',
+settings = {'port': 'com4',
             'baud': 4800}
 
 
@@ -12,6 +12,7 @@ def get_port():
     prt.parity = serial.PARITY_EVEN
     prt.stopbits = 2
     prt.xonxoff = True
+    prt.open()
     return prt
 
 ser = get_port()

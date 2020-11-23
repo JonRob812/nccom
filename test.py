@@ -1,7 +1,7 @@
 import serial
 
 
-ser = serial.Serial('COM3', 4800, serial.SEVENBITS, serial.PARITY_EVEN, 2, None, True,)
+ser = serial.Serial('COM4', 4800, serial.SEVENBITS, serial.PARITY_EVEN, 2, None, True,)
 
 pgm = """%
 O1212(TEST)
